@@ -5,7 +5,21 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository, with some added features by noRoof. These features are common ones in most server applications
+
+### Features
+
+- Docker environment (dev and prod)
+- Logger
+
+### Next steps
+
+Next features to be added:
+
+- Swagger
+- Configuration
+- TypeORM integration
+- Users CRUD
 
 ## Installation
 
@@ -39,16 +53,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
 ## Stay in touch
 
-- Author - [noRoof](https://github.com/noRoof)
 - Website - [https://noroofdevelopment.com](https://noroofdevelopment.com/)
 - Twitter - [@noroofdev](https://twitter.com/noroofdev)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
