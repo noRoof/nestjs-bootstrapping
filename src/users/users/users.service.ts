@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { AppLogger } from 'src/logger/app-logger.service';
+import { AppLogger } from '../../logger/app-logger.service';
 
 @Injectable()
 export class UsersService {
   constructor(
-      private myLogger: AppLogger
-    ) {
-     this.myLogger.setContext('UsersService');
+    private myLogger: AppLogger
+  ) {
+    this.myLogger.setContext('UsersService');
   }
 
   getUsers(): string[] {
