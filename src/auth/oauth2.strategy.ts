@@ -9,7 +9,7 @@ export class OauthStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  async validate(clientId: string, clientSecret: string): Promise<any> {
+  async validate(clientId: string, clientSecret:string): Promise<any> {
     const client = await this.authService.validateClient(clientId, clientSecret);
     if (!client) {
       throw new UnauthorizedException();
