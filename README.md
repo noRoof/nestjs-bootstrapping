@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank" style="margin-right: 30px;"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
   <a href="https://noroofdevelopment.com/" target="blank"><img src="https://noroofdevelopment.com/assets/img/logo.png" height="120" alt="noRoof Logo" /></a>
 </p>
 
@@ -12,16 +12,21 @@
 - Docker environment (dev and prod)
 - Logger
 - Logger endpoint for client usage
+- Client Secure endpoints
 
 ### Next steps
 
 Next features to be added:
 
-- Client Secure endpoints
+- Add real implementation to Oauth Strategy
 - Swagger
+- Add http passport strategy
 - Configuration
 - TypeORM integration
 - Users CRUD
+- Add local passport strategy
+- Add jwt passport strategy
+- Users Secure endpoints
 
 ## Installation
 
