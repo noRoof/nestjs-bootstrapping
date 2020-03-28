@@ -13,6 +13,9 @@
 - Logger
 - Logger endpoint for client usage
 - Client Secure endpoints
+- Configuration
+- TypeORM integration
+- Users CRUD
 
 ### Next steps
 
@@ -20,10 +23,6 @@ Next features to be added:
 
 - Add real implementation to Oauth Strategy
 - Swagger
-- Add http passport strategy
-- Configuration
-- TypeORM integration
-- Users CRUD
 - Add local passport strategy
 - Add jwt passport strategy
 - Users Secure endpoints
