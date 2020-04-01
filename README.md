@@ -16,13 +16,13 @@
 - Configuration
 - TypeORM integration
 - Users CRUD
+- Swagger
 
 ### Next steps
 
 Next features to be added:
 
 - Add real implementation to Oauth Strategy
-- Swagger
 - Add local passport strategy
 - Add jwt passport strategy
 - Users Secure endpoints

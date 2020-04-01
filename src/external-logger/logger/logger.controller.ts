@@ -3,7 +3,10 @@ import { AppLogger } from '../../logger/app-logger.service';
 import { ErrorDto } from './dto/error-dto';
 import { LogDto } from './dto/log-dto';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags, ApiOAuth2 } from '@nestjs/swagger';
 
+@ApiOAuth2(['logger:write'])
+@ApiTags('logger')
 @Controller('logger')
 export class LoggerController {
   constructor(
