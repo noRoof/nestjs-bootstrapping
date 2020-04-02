@@ -18,9 +18,10 @@ async function bootstrap() {
     .setTitle('Template API documentation')
     .setDescription('The template API description')
     .setVersion('1.0')
+    .addTag('auth')
     .addTag('users')
     .addTag('logger')
-    .addOAuth2()
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

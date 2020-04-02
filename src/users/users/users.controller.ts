@@ -3,10 +3,11 @@ import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
 import { UserDto } from './dtos/user-dto';
 import { UserDataDto } from './dtos/user-data-dto';
-import { ApiTags, ApiOAuth2 } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
-@UseGuards(AuthGuard('oauth2-client-password'))
-@ApiOAuth2(['users:write'])
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 @ApiTags('users')
 @Controller('users')
 export class UsersController {

@@ -21,6 +21,11 @@ export class User extends BaseEntity {
     unique: true
   })
   email: string;
+
+  @Column({
+    length: 100
+  })
+  password: string;
   
   @Column()
   isActive: boolean;

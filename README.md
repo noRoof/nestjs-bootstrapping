@@ -11,21 +11,23 @@
 
 - Docker environment (dev and prod)
 - Logger
-- Logger endpoint for client usage
-- Client Secure endpoints
+- Logger endpoint for client applications usage
 - Configuration
 - TypeORM integration
 - Users CRUD
-- Swagger
+- Swagger Documentation
+- Add oauth2, local, jwt passport strategy
+- Add Client and User Authorization for endpoints
 
 ### Next steps
 
 Next features to be added:
 
 - Add real implementation to Oauth Strategy
-- Add local passport strategy
-- Add jwt passport strategy
-- Users Secure endpoints
+- Add role based security to endpoints
+- Verify user email
+- Update password endpoint
+- Get current user endpoint
 
 ## Installation
 

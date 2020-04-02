@@ -1,8 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { AppLogger } from '../../logger/app-logger.service';
 import { User } from './models/user.entity';
 import { UserDto } from './dtos/user-dto';
 import { UserDataDto } from './dtos/user-data-dto';
+import { UserRegisterDto } from './dtos/user-register-dto';
 
 @Injectable()
 export class UsersService {
@@ -12,29 +14,45 @@ export class UsersService {
     this.myLogger.setContext('UsersService');
   }
 
-  async create(beaconData: UserDataDto): Promise<UserDto> {
+  async create(userData: UserDataDto): Promise<UserDto> {
     const user = new User();
-    await this.updateDataAndSave(user, beaconData);
+    user.password = await this.hashPassword(userData.password);
+    await this.updateDataAndSave(user, userData);
     return this.entityToDto(user);
   }
 
-  async update(id: number, beaconData: UserDataDto): Promise<UserDto> {
+  async register(userData: UserRegisterDto): Promise<UserDto> {
+    const user = new User();
+    user.password = await this.hashPassword(userData.password);
+    await this.updateDataAndSave(user, userData);
+    return user;
+  }
+
+  async update(id: number, userData: UserDataDto): Promise<UserDto> {
     const user = await User.findOne(id);
-    await this.updateDataAndSave(user, beaconData);
+    user.password = await this.hashPassword(userData.password);
+    await this.updateDataAndSave(user, userData);
     return this.entityToDto(user);
   }
 
   async findById(id): Promise<UserDto> {
-    const user: UserDto = await User.findOne({ id: id });
+    const user: User = await User.findOne({ id: id });
     if (!user) {
       throw new NotFoundException();
     }
-    return user;
+    return this.entityToDto(user);
+  }
+
+  async findByEmail(email: string): Promise<User | undefined> {
+    return await User.findOne({ email: email });
   }
 
   async findAll(): Promise<UserDto[]> {
-    const user: UserDto[] = await User.find();
-    return user;
+    const users: User[] = await User.find();
+    const cleanUsers: UserDto[] = users.map(user => {
+      return this.entityToDto(user)
+    });
+    return cleanUsers;
   }
 
   async delete(id) {
@@ -58,5 +76,11 @@ export class UsersService {
       lastName: user.lastName,
       email: user.email,
     }
+  }
+
+  private async hashPassword(password: string): Promise<string> {
+    const salt = await bcrypt.genSalt(process.env.SALT_ROUNDS);
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
   }
 }
