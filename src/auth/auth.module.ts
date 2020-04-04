@@ -7,11 +7,13 @@ import { AuthService } from './auth.service';
 import { UsersModule } from '../users/users.module';
 import { JwtStrategy } from './jwt.strategy';
 import { jwtConstants } from './constants';
+import { ClientModule } from 'src/client/client.module';
 
 @Module({
   imports: [
     PassportModule,
     UsersModule,
+    ClientModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '3600s' },

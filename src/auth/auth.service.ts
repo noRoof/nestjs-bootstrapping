@@ -2,16 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from 'src/users/users/users.service';
+import { ClientService } from 'src/client/client.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
+    private clientService: ClientService,
     private jwtService: JwtService
     ) {}
 
   async validateClient(clientId: string, clientSecret: string): Promise<any> {
-    const client = await this.findClient(clientId);
+    const client = await this.clientService.findById(clientId);
     if (client && client.secret === clientSecret) {
       const { secret, ...result } = client;
       return result;
@@ -28,13 +30,6 @@ export class AuthService {
       return result;
     }
     return null;
-  }
-
-  findClient(clintId: string) {
-    return {
-      secret: 'dummy secret',
-      id: clintId
-    }
   }
 
   async login(user: any) {

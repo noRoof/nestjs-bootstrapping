@@ -23,19 +23,30 @@
 
 Next features to be added:
 
-- Add real implementation to Oauth Strategy
 - Add role based security to endpoints
+- Add unit tests
 - Verify user email
 - Update password endpoint
 - Get current user endpoint
 
 ## Installation
+Make a copy of the sample.env file, and rename it to .env file, then add your own configuration values.
 
+### Dockerized
+This repo has a Dockerfile and a docker-compose.yml included that has all the required steps and dependencies to run the project (a node image for the server and a postgreSQL for the database). If you have docker installed you only have to run:
+```bash
+$ docker-compose up
+```
+It will install all the required dependencies and run the application in dev mode.
+(remember to update the configuration in the .env file)
+
+### Local
 ```bash
 $ npm install
 ```
+Install PostgreSQL and add the configuration in the .env file
 
-## Running the app
+## Running the app (only for local installation)
 
 ```bash
 # development
@@ -60,6 +71,7 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+(If you are using docker you have to enter to the docker container)
 
 ## Stay in touch
 
