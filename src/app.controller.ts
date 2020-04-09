@@ -7,32 +7,28 @@ import { ApiTags } from '@nestjs/swagger';
 import { UserRegisterDto } from './users/users/dtos/user-register-dto';
 
 @ApiTags('auth')
-@Controller()
+@Controller('auth')
 export class AppController {
   constructor(
     private readonly authService: AuthService,
     private readonly usersService: UsersService) {}
 
   @UseGuards(...[AuthGuard('oauth2-client-password'), AuthGuard('local')])
-  @Post('auth/login')
+  @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
 
   @UseGuards(AuthGuard('oauth2-client-password'))
-  @Post('auth/client')
+  @Post('client')
   async client(@Request() req) {
     return this.authService.client(req.user);
   }
 
   @UseGuards(AuthGuard('oauth2-client-password'))
-  @Post('auth/register')
+  @Post('register')
   async register(@Body() user: UserRegisterDto) {
     const registered = await this.usersService.register(user);
-    const toLogin = {
-      username: registered.email,
-      sub: registered.id
-    }
-    return this.authService.login(toLogin);
+    return this.authService.login(registered);
   }
 }

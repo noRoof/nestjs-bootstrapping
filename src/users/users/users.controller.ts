@@ -2,8 +2,10 @@ import { Controller, Get, Param, Post, Body, Put, Delete, UseGuards } from '@nes
 import { UsersService } from './users.service';
 import { UserDto } from './dtos/user-dto';
 import { UserDataDto } from './dtos/user-data-dto';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { User } from './user.decorator';
+import { UserPayload } from 'src/auth/interfaces/user-payload';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
@@ -15,6 +17,14 @@ export class UsersController {
   @Get()
   findAll(): Promise<UserDto[]> {
     return this.usersService.findAll();
+  }
+
+  @ApiBearerAuth()
+  @Get('me')
+  @ApiResponse({ description: 'User data.' })
+  @ApiUnauthorizedResponse({ description: 'Invalid jwt or access expired.' })
+  getProfile(@User() user: UserPayload) {
+    return this.usersService.findById(user.userId);
   }
 
   @Get(':id')
