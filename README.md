@@ -18,6 +18,7 @@
 - Swagger Documentation
 - Add oauth2, local, jwt passport strategy
 - Add Client and User Authorization for endpoints
+- Get current user endpoint
 
 ### Next steps
 
@@ -27,7 +28,6 @@ Next features to be added:
 - Add unit tests
 - Verify user email
 - Update password endpoint
-- Get current user endpoint
 
 ## Installation
 Make a copy of the sample.env file, and rename it to .env file, then add your own configuration values.
