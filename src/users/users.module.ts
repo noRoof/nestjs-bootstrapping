@@ -6,7 +6,9 @@ import { LoggerModule } from '../logger/logger.module';
 @Module({
   imports: [LoggerModule],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [
+    UsersService,
+  ],
   exports: [UsersService]
 })
 export class UsersModule {}

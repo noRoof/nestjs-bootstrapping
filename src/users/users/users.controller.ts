@@ -6,8 +6,11 @@ import { ApiTags, ApiBearerAuth, ApiResponse, ApiUnauthorizedResponse } from '@n
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { User } from './user.decorator';
 import { UserPayload } from 'src/auth/interfaces/user-payload';
+import { Roles } from 'src/auth/roles.decorator';
+import { UserRole } from './models/user-role';
+import { RolesGuard } from 'src/auth/roles.guard';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(...[JwtAuthGuard, RolesGuard])
 @ApiBearerAuth()
 @ApiTags('users')
 @Controller('users')
@@ -37,12 +40,14 @@ export class UsersController {
     return this.usersService.create(user);
   }
 
+  @Roles(UserRole.EDITOR, UserRole.ADMIN)
   @Put(':id')
   update(@Param('id') id: number, @Body() user: UserDataDto): Promise<UserDto> {
     return this.usersService.update(id, user);
   }
 
   @Delete(':id')
+  @Roles(UserRole.ADMIN)
   remove(@Param('id') id: number) {
     return this.remove(id);
   }

@@ -1,4 +1,5 @@
 import {BaseEntity, Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import { UserRole } from "./user-role";
 
 @Entity()
 export class User extends BaseEntity {
@@ -29,4 +30,11 @@ export class User extends BaseEntity {
   
   @Column()
   isActive: boolean;
+
+  @Column({
+    type: "enum",
+    enum: UserRole,
+    default: UserRole.GHOST
+  })
+  role: UserRole
 }

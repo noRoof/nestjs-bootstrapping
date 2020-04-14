@@ -5,6 +5,7 @@ import { User } from './models/user.entity';
 import { UserDto } from './dtos/user-dto';
 import { UserDataDto } from './dtos/user-data-dto';
 import { UserRegisterDto } from './dtos/user-register-dto';
+import { UserRole } from './models/user-role';
 
 @Injectable()
 export class UsersService {
@@ -24,7 +25,11 @@ export class UsersService {
   async register(userData: UserRegisterDto): Promise<UserDto> {
     const user = new User();
     user.password = await this.hashPassword(userData.password);
-    await this.updateDataAndSave(user, userData);
+    const dataToSave: UserDataDto = {
+      ...userData,
+      role: UserRole.USER
+    };
+    await this.updateDataAndSave(user, dataToSave);
     return user;
   }
 
@@ -65,6 +70,7 @@ export class UsersService {
     user.firstName = data.firstName;
     user.lastName = data.lastName;
     user.email = data.email;
+    user.role = data.role;
     user.isActive = true;
     await user.save();
   }
@@ -75,11 +81,12 @@ export class UsersService {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      role: user.role,
     }
   }
 
   private async hashPassword(password: string): Promise<string> {
-    const salt = await bcrypt.genSalt(process.env.SALT_ROUNDS);
+    const salt = await bcrypt.genSalt(+process.env.SALT_ROUNDS);
     const hash = await bcrypt.hash(password, salt);
     return hash;
   }

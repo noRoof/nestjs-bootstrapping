@@ -1,13 +1,14 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
   <a href="https://noroofdevelopment.com/" target="blank"><img src="https://noroofdevelopment.com/assets/img/logo.png" height="120" alt="noRoof Logo" /></a>
 </p>
 
-## Description
+# NestjsTemplate
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository, with some added features by noRoof. These features are common ones in most server applications.
+Nestyjs Template is a boilerplate project for [Nest](https://github.com/nestjs/nest) framework. It will have some common features required in most server applications and will follows best coding practices.
 
-### Features
+## Features
+
+### Current features
 
 - Docker environment (dev and prod)
 - Logger
@@ -19,12 +20,12 @@
 - Add oauth2, local, jwt passport strategy
 - Add Client and User Authorization for endpoints
 - Get current user endpoint
+- Add role based security to endpoints
 
 ### Next steps
 
 Next features to be added:
 
-- Add role based security to endpoints
 - Add unit tests
 - Verify user email
 - Update password endpoint
