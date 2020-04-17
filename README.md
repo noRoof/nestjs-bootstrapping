@@ -21,6 +21,7 @@ Nestyjs Template is a boilerplate project for [Nest](https://github.com/nestjs/n
 - Add Client and User Authorization for endpoints
 - Get current user endpoint
 - Add role based security to endpoints
+- Security
 
 ### Next steps
 
@@ -29,6 +30,7 @@ Next features to be added:
 - Add unit tests
 - Verify user email
 - Update password endpoint
+- Cache with Redis
 
 ## Installation
 Make a copy of the sample.env file, and rename it to .env file, then add your own configuration values.
